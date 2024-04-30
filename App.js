@@ -1,5 +1,5 @@
 const express=require('express')
-const index=new express();
+const App=new express();
 const nodeMailer = require('nodemailer')
 const bodyparsel=require ('body-parser')
 require("dotenv").config();
@@ -7,9 +7,9 @@ require("dotenv").config();
 
 const port=process.env.PORT ;
 
-index.use(bodyparsel.json());
+App.use(bodyparsel.json());
 
-index.post('/sendMail',(req,res)=>{
+App.post('/sendMail',(req,res)=>{
   const{to,subject,text}=req.body
 
 
@@ -39,6 +39,6 @@ transportmail.sendMail(mailContent, function (err, val) {
 });
 
 
-index.listen(port,()=>{
+App.listen(port,()=>{
   console.log("working"+process.env.PORT);
 })
